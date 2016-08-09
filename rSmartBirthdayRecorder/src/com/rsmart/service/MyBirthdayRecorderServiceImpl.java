@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rsmart.dao.MyBirthdayRecorderDAO;
 import com.rsmart.model.MyBirthdayRecorder;
 
 
@@ -22,10 +23,14 @@ import com.rsmart.model.MyBirthdayRecorder;
 @Service
 public class MyBirthdayRecorderServiceImpl implements MyBirthdayRecorderService {
 
+	
+	MyBirthdayRecorderDAO myBirthdayRecorderDAO;
+	
 	@Override
 	public MyBirthdayRecorder addBirthdayUser(MyBirthdayRecorder user) {
 		// TODO Auto-generated method stub
-		return null;
+		myBirthdayRecorderDAO.saveOrUpdate(user);
+		return user;
 	}
 
 	@Override
@@ -37,7 +42,9 @@ public class MyBirthdayRecorderServiceImpl implements MyBirthdayRecorderService 
 	@Override
 	public List<MyBirthdayRecorder> fetchBirthdayUsers() {
 		// TODO Auto-generated method stub
-		return null;
+		 List<MyBirthdayRecorder> users =myBirthdayRecorderDAO.fetchAllBirthdayRecords();
+	
+		 return users;
 	}
 
 	/*

@@ -1,5 +1,6 @@
 package com.rsmart.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.EmbeddedId;
@@ -8,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="myBirthdayRecorder")
-public class MyBirthdayRecorder {
+public class MyBirthdayRecorder implements Serializable {
 
 	
 	@EmbeddedId

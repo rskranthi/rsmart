@@ -11,7 +11,7 @@ import com.rsmart.model.MyBirthdayRecorder;
  * @author Kranthi
  *
  */
-public interface MyBirthdayRecorderDAO {
+public interface MyBirthdayRecorderDAO  {
 
 	
 	public void saveOrUpdate(MyBirthdayRecorder myBirthdayRecorder);

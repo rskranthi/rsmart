@@ -1,6 +1,5 @@
 package com.rsmart.controller;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,47 +8,59 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.rsmart.model.MyBirthdayRecorder;
 import com.rsmart.service.MyBirthdayRecorderService;
 
 
 
 
+
 @Controller
-@RequestMapping(value="rSmartBirthdayRecorder")
 public class MyBirthdayRecorderController {
-	/*
 	
-	@Autowired
+	
 	SessionFactory sessionFactory;
 
-	@Autowired
+	
 	MyBirthdayRecorderService myBirthdayRecorderService;
-	*/
-	@RequestMapping(value="/test")
-	public String test()
-	{
-		return "view";
+
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public ModelAndView defaultPage() {
+		return new ModelAndView("view");
 	}
 	
-	/*@Transactional
-	public ModelAndView transferfunds(Principal principal) {
-		Session session = sessionFactory.getCurrentSession();
-		final String currentUser = principal.getName();
+	@RequestMapping(value="/test", method= RequestMethod.GET)
+	public ModelAndView test()
+	{
+		ModelAndView model = new ModelAndView();
+		
+		return new ModelAndView("test");
+	}
+	
+	
+	@RequestMapping(value="/getAllUsers", method= RequestMethod.GET)
+	public ModelAndView getAllUsers() {
+		
+		
+		
+		
 		ModelAndView model = new ModelAndView();
 		List<Integer> userlist = new ArrayList<Integer>();
-		// List<RegUser> reguser = session.createQuery(
-		// "select from sbs.RegUser where accountNumber is not null").list();
+		
 
-		List<AccountInfo> reguser = reguserserv.getRegUsers(currentUser);
-		for (AccountInfo reg : reguser)
-			userlist.add(reg.getAccountNumber());
+		System.out.println("size: ");
+		List<MyBirthdayRecorder> reguser = myBirthdayRecorderService.fetchBirthdayUsers();
+		System.out.println("size: "+reguser.size());
 
-		System.out.println(userlist);
-		model.addObject("regusers", userlist);
-		model.setViewName("transferfunds");
-		return model;
+		
+		
+		return new ModelAndView("regusers");
 
-	}*/
+	}
 }
